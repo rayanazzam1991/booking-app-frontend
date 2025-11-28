@@ -20,7 +20,7 @@ export default cachedEventHandler(
     },
     {
         swr: true,
-        maxAge: 1,
+        maxAge: 60,
         name: "services",
         getKey: () => "services"
     }
