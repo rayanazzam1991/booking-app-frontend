@@ -26,6 +26,10 @@ export const useServiceStore = defineStore('service-store', () =>{
         }
     }
 
+    const setServiceProfessionals  = (list :  HealthProfessional[]  | [])=>{
+        serviceProfessionals.value = list
+    }
+
     const getServices = computed(()=>services.value)
     const getServiceProfessionals = computed(()=>serviceProfessionals.value)
 
@@ -36,5 +40,6 @@ export const useServiceStore = defineStore('service-store', () =>{
         fetchServiceProfessionals,
         getServices,
         getServiceProfessionals,
+        setServiceProfessionals
     }
 })
