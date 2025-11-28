@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { ref, onMounted, watch, nextTick } from 'vue'
-import { z } from 'zod'
-import { toTypedSchema } from '@vee-validate/zod'
-import { useForm } from 'vee-validate'
 
 import {
   Card, CardHeader, CardContent, CardTitle, CardDescription
@@ -17,135 +13,20 @@ import {
 } from "@/components/ui/form"
 import { Loader2Icon, CalendarIcon, UserIcon, MailIcon, StethoscopeIcon } from 'lucide-vue-next'
 import {type HealthProfessional} from "../../shared/types/healthProfessional";
-import { toast } from 'vue-sonner'
-import {useToast} from "../composables/useToast";
 
-// --- Zod Validation Schema ---
-const appointmentSchema = z.object({
-  service_id: z.string().min(1, 'Please select a service.'),
-  health_professional_id: z.string().min(1, 'Please select a health professional.'),
-  date: z.string().min(1, 'Please choose a date and time.').refine(
-      (val) => !isNaN(new Date(val).getTime()),
-      { message: "Invalid date format." }
-  ),
-  customer_email: z.string().min(1, 'Email is required.').email('Invalid email format.'),
-})
-
-type AppointmentForm = z.infer<typeof appointmentSchema>
-
-const initialForm = {
-  service_id: '',
-  health_professional_id: '',
-  date: '',
-  customer_email: '',
-}
-
-const { handleSubmit, isSubmitting, setFieldError, values, resetForm } = useForm<AppointmentForm>({
-  validationSchema: toTypedSchema(appointmentSchema),
-  initialValues: initialForm
-})
-
-// --- Reactive State ---
-const generalError = ref('')
-const successMessage = ref('')
-const showSuccessState = ref(false)
-const formCardRef = ref()
-const isCelebrating = ref(false)
-
-// Stores
-const serviceStore = useServiceStore()
-const { fetchServices, fetchServiceProfessionals,setServiceProfessionals } = serviceStore
-const { getServices: services,getServiceProfessionals:professionals } = storeToRefs(serviceStore)
-
-
-const appointmentStore = useAppointmentStore()
-
-// --- Data Fetching ---
-onMounted(async () => {
-  await Promise.all([
-    fetchServices(),
-  ])
-})
-
-// Watch the service_id field to trigger the professional fetch
-watch(() => values.service_id, async (newServiceId) => {
-  if (values.health_professional_id) {
-    setFieldError('health_professional_id', undefined)
-  }
-  values.health_professional_id = ''
-  values.date = ''
-  values.customer_email = ''
-
-  // Reset professionals list immediately when service changes
-  setServiceProfessionals([])
-
-  generalError.value = ''
-
-  if (!newServiceId) return
-
-  try {
-    await fetchServiceProfessionals(Number(newServiceId))
-
-  } catch (error) {
-    console.error('Error fetching professionals:', error)
-    setServiceProfessionals([])
-  }
-}, { immediate: false })
+const {
+  handleSubmit: submitForm,
+  isSubmitting,
+  values,
+  showSuccessState,
+  services,
+  professionals,
+} = useAppointmentForm()
 
 const displayProfessionalName = (p: HealthProfessional) => {
   if (p.name) return p.name
   return `Professional #${p.id}`
 }
-
-// Enhanced reset function with animation and 2-second delay
-const resetFormWithAnimation = async () => {
-  showSuccessState.value = true
-  isCelebrating.value = true
-  await nextTick()
-
-  // Use a ref for celebration state instead of direct class manipulation
-  setTimeout(() => {
-    isCelebrating.value = false
-  }, 2000)
-
-  // Wait 2 seconds showing success message, then reset everything
-  setTimeout(() => {
-    resetForm()
-    showSuccessState.value = false
-
-    // Reset any additional reactive state if needed
-    generalError.value = ''
-    successMessage.value = ''
-
-    // Reset professionals list
-    setServiceProfessionals([])
-  }, 2000)
-}
-
-const {successToast,errorToast} = useToast()
-
-// --- HANDLE SUBMISSION ---
-const submitForm = handleSubmit(async (formData) => {
-  generalError.value = ''
-  successMessage.value = ''
-  try {
-    await appointmentStore.bookAppointment({
-      ...formData,
-      service_id: Number(formData.service_id),
-      health_professional_id: Number(formData.health_professional_id),
-    })
-
-    successMessage.value = 'Your appointment has been booked successfully!'
-    successToast(successMessage.value)
-
-
-    await resetFormWithAnimation()
-  } catch (error: any) {
-    generalError.value = 'Failed to book appointment. Please try again.'
-    console.error('Appointment booking error:', error)
-    errorToast(error.message ?? generalError.value)
-  }
-})
 </script>
 
 <template>
