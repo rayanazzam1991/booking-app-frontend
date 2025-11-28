@@ -18,6 +18,7 @@ import {
 import { Loader2Icon, CalendarIcon, UserIcon, MailIcon, StethoscopeIcon } from 'lucide-vue-next'
 import {type HealthProfessional} from "../../shared/types/healthProfessional";
 import { toast } from 'vue-sonner'
+import {useToast} from "../composables/useToast";
 
 // --- Zod Validation Schema ---
 const appointmentSchema = z.object({
@@ -53,7 +54,6 @@ const isCelebrating = ref(false)
 
 // Stores
 const serviceStore = useServiceStore()
-const healthProfessionalStore = useHeatherProfessionalStore()
 const { fetchServices, fetchServiceProfessionals,setServiceProfessionals } = serviceStore
 const { getServices: services,getServiceProfessionals:professionals } = storeToRefs(serviceStore)
 
@@ -122,6 +122,7 @@ const resetFormWithAnimation = async () => {
   }, 2000)
 }
 
+const {successToast,errorToast} = useToast()
 
 // --- HANDLE SUBMISSION ---
 const submitForm = handleSubmit(async (formData) => {
@@ -135,17 +136,14 @@ const submitForm = handleSubmit(async (formData) => {
     })
 
     successMessage.value = 'Your appointment has been booked successfully!'
+    successToast(successMessage.value)
 
-    // Use toast without the class property to avoid the undefined error
-    toast.success(successMessage.value)
 
     await resetFormWithAnimation()
   } catch (error: any) {
     generalError.value = 'Failed to book appointment. Please try again.'
     console.error('Appointment booking error:', error)
-
-    // Use toast without the class property
-    toast.error(error.message ?? generalError.value)
+    errorToast(error.message ?? generalError.value)
   }
 })
 </script>
