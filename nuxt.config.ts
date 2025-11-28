@@ -31,11 +31,10 @@ export default defineNuxtConfig({
     componentDir: '@/components/ui'
   },
   runtimeConfig: {
-    // Only available on the server (good for secrets)
-    openaiApiKey: process.env.OPENAI_API_KEY,
-
     // Public runtime config (exposed to client)
     public: {
+      BASE_API_URL: process.env.VITE_API_BASE_URL,
+      BASE_URL: process.env.VITE_BASE_URL,
       // you can put a default system prompt here if you want
       defaultSystemPrompt: ''
     }
