@@ -1,10 +1,11 @@
 {
-  "progressPercent": 40,
+  "progressPercent": 60,
   "startedAt": "2026-03-30T07:34:59.969Z",
-  "updatedAt": "2026-03-31T22:37:07.056Z",
+  "updatedAt": "2026-04-02T00:02:41.000Z",
   "completedStepIds": [
     "baseline-behavior",
-    "test-safety-net"
+    "test-safety-net",
+    "bootstrap-feature-architecture"
   ],
-  "nextStepId": "bootstrap-feature-architecture"
+  "nextStepId": "migrate-booking-logic"
 }

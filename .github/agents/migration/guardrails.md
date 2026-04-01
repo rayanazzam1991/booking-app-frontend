@@ -43,6 +43,15 @@ On every run:
 
 If any completed step is missing its documentation file under `docs/migration/`, stop and report it instead of guessing.
 
+## Step 3 Guardrail
+
+When `nextStepId = bootstrap-feature-architecture`:
+- create only the protected feature shell
+- do not move business logic yet
+- do not edit legacy booking files under `app/components/`, `app/composables/`, or `app/stores/`
+- keep behavior unchanged
+- update `progress.json` to mark Step 3 complete only after Step 3 verification is actually complete
+
 ## Agent Definition Rule
 
 The migration agent definition itself lives under `.github/agents/migration/`.
