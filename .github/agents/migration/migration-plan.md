@@ -2,14 +2,7 @@
 
 This project is currently concentrated in legacy source roots (app, server, shared) and does not yet satisfy the protected feature structure New Studio expects. New Studio recommends a phased migration before relying on protected feature scans alone.
 
-Agent file: `.github/agents/migration/project-migration.agent.md`
-
-Progress file: `.github/agents/migration/progress.json`
-
-On every run, the migration agent must:
-1. read the progress file first
-2. load the docs for all completed steps listed in `completedStepIds`
-3. execute only the step named by `nextStepId`
+Agent file: project-migration.agent.md
 
 ## Recommended Skills
 - nuxt
@@ -90,3 +83,4 @@ Scanner actions:
 - Re-run tests.
 Manual verification:
 - Perform a final UI and behavior comparison for the completed slice.
+
