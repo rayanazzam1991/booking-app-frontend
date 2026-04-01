@@ -1,0 +1,96 @@
+.
+├── README.md
+├── app
+│   ├── app.vue
+│   ├── assets
+│   │   └── css
+│   │       └── main.css
+│   ├── components
+│   │   ├── ApointmentForm.vue
+│   │   └── ui
+│   │       ├── button
+│   │       │   ├── Button.vue
+│   │       │   └── index.ts
+│   │       ├── card
+│   │       │   ├── Card.vue
+│   │       │   ├── CardContent.vue
+│   │       │   ├── CardDescription.vue
+│   │       │   ├── CardFooter.vue
+│   │       │   ├── CardHeader.vue
+│   │       │   ├── CardTitle.vue
+│   │       │   └── index.ts
+│   │       ├── form
+│   │       │   ├── FormControl.vue
+│   │       │   ├── FormDescription.vue
+│   │       │   ├── FormItem.vue
+│   │       │   ├── FormLabel.vue
+│   │       │   ├── FormMessage.vue
+│   │       │   ├── index.ts
+│   │       │   ├── injectionKeys.ts
+│   │       │   └── useFormField.ts
+│   │       ├── input
+│   │       │   ├── Input.vue
+│   │       │   └── index.ts
+│   │       ├── label
+│   │       │   ├── Label.vue
+│   │       │   └── index.ts
+│   │       ├── select
+│   │       │   ├── Select.vue
+│   │       │   ├── SelectContent.vue
+│   │       │   ├── SelectGroup.vue
+│   │       │   ├── SelectItem.vue
+│   │       │   ├── SelectItemText.vue
+│   │       │   ├── SelectLabel.vue
+│   │       │   ├── SelectScrollDownButton.vue
+│   │       │   ├── SelectScrollUpButton.vue
+│   │       │   ├── SelectSeparator.vue
+│   │       │   ├── SelectTrigger.vue
+│   │       │   ├── SelectValue.vue
+│   │       │   └── index.ts
+│   │       └── sonner
+│   │           ├── Sonner.vue
+│   │           └── index.ts
+│   ├── composables
+│   │   ├── useApi.ts
+│   │   ├── useAppointmentForm.ts
+│   │   └── useToast.ts
+│   ├── lib
+│   │   └── utils.ts
+│   ├── pages
+│   │   └── index.vue
+│   ├── plugins
+│   │   └── ssr-width.ts
+│   ├── services
+│   │   └── http.ts
+│   └── stores
+│       ├── appointmentStore.ts
+│       ├── heathProfessionalStore.ts
+│       └── serviceStore.ts
+├── components.json
+├── docs
+│   └── migration
+│       └── step-01-snapshot.md
+├── nuxt.config.ts
+├── package.json
+├── pnpm-lock.yaml
+├── public
+│   ├── favicon.ico
+│   └── robots.txt
+├── server
+│   └── api
+│       ├── appointments
+│       ├── health_professionals.get.ts
+│       └── services
+│           ├── [id]
+│           │   └── health_professionals.get.ts
+│           └── index.get.ts
+├── shared
+│   └── types
+│       ├── api.ts
+│       ├── healthProfessional.ts
+│       └── service.ts
+├── structure.txt
+├── tailwind.config.ts
+└── tsconfig.json
+
+29 directories, 65 files

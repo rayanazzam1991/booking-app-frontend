@@ -1,0 +1,10 @@
+{
+  "progressPercent": 40,
+  "startedAt": "2026-03-30T07:34:59.969Z",
+  "updatedAt": "2026-03-31T22:37:07.056Z",
+  "completedStepIds": [
+    "baseline-behavior",
+    "test-safety-net"
+  ],
+  "nextStepId": "bootstrap-feature-architecture"
+}
