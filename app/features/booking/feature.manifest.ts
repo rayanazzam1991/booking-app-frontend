@@ -34,7 +34,7 @@ export const bookingFeatureManifest = {
    * "migrating" — logic is being progressively moved into this feature
    * "complete"  — all legacy roots have been absorbed
    */
-  status: 'shell' as const,
+  status: 'migrating' as const,
 
   /**
    * Legacy source files that this feature will absorb in future steps.

@@ -67,8 +67,8 @@ describe('bookingFeatureManifest', () => {
     expect(bookingFeatureManifest.version).toMatch(/^\d+\.\d+\.\d+$/)
   })
 
-  it('has status "shell" during this migration step', () => {
-    expect(bookingFeatureManifest.status).toBe('shell')
+  it('has status "migrating" after booking logic was moved into the feature directory', () => {
+    expect(bookingFeatureManifest.status).toBe('migrating')
   })
 
   it('lists all four legacy roots that belong to this slice', () => {
