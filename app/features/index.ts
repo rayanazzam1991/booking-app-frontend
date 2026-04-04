@@ -13,7 +13,7 @@
  *    wherever a feature identifier is needed at the type level.
  */
 
-import { bookingFeatureManifest } from './booking/feature.manifest'
+import { bookingFeatureManifest } from './booking/manifest'
 
 export const featureRegistry = {
   booking: bookingFeatureManifest,
@@ -33,4 +33,3 @@ export function getFeatureManifest(id: FeatureId) {
 // Re-export each feature's public API so consumers can use a single import
 // path: `import { ... } from '~/features'`
 export * from './booking'
-

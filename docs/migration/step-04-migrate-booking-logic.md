@@ -37,7 +37,7 @@ imports from those paths is broken.
 | Modified | `app/composables/useAppointmentForm.ts`                     | Re-export shim → `app/features/booking/composables/useAppointmentForm.ts` |
 | Modified | `app/components/ApointmentForm.vue`                         | Vue SFC shim — `export { default }` re-exports the feature component |
 | Modified | `app/features/booking/index.ts`                             | Added exports: `useServiceStore`, `useAppointmentStore`, `useAppointmentForm`, `AppointmentForm` |
-| Modified | `app/features/booking/feature.manifest.ts`                  | `status` advanced from `'shell'` → `'migrating'` |
+| Modified | `app/features/booking/manifest.ts`                          | `status` advanced from `'shell'` → `'migrating'` |
 | Modified | `test/nuxt/features/booking.manifest.spec.ts`               | Status assertion updated to `'migrating'` |
 
 **No other source files were modified.**
@@ -163,7 +163,7 @@ Test Files  4 passed (4)
 - [x] `app/features/booking/components/AppointmentForm.vue` created with full implementation
 - [x] All legacy files replaced with re-export shims (no behavior change)
 - [x] `app/features/booking/index.ts` exports all four new modules
-- [x] `feature.manifest.ts` `status` advanced to `'migrating'`
+- [x] `manifest.ts` `status` advanced to `'migrating'`
 - [x] All 26 prior tests still pass
 - [x] 13 new tests added targeting feature paths directly (39 total pass)
 - [x] No real backend called in any test
@@ -179,6 +179,5 @@ Test Files  4 passed (4)
 
 Remove the re-export shim files once the page (`index.vue`) and any remaining
 callers are updated to import directly from `app/features/booking/`.  The
-`feature.manifest.ts` status will advance from `'migrating'` to `'complete'`.
+`manifest.ts` status will advance from `'migrating'` to `'complete'`.
 ````
-

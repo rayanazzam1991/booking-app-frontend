@@ -21,7 +21,8 @@ import {
   getFeatureManifest,
   type FeatureId,
 } from '../../../app/features'
-import { bookingFeatureManifest } from '../../../app/features/booking/feature.manifest'
+import { bookingFeatureManifest } from '../../../app/features/booking/manifest'
+import { featureRegistry as scannerFeatureRegistry } from '../../../app/features/registry'
 
 // ---------------------------------------------------------------------------
 // Registry
@@ -41,6 +42,16 @@ describe('featureRegistry', () => {
     const knownKeys: FeatureId[] = ['booking']
     const actualKeys = Object.keys(featureRegistry)
     expect(actualKeys).toEqual(knownKeys)
+  })
+})
+
+describe('scanner featureRegistry', () => {
+  it('exports a JSON-shaped features array for New Studio', () => {
+    expect(Array.isArray(scannerFeatureRegistry.features)).toBe(true)
+  })
+
+  it('contains a booking feature entry in the scanner registry', () => {
+    expect(scannerFeatureRegistry.features[0]?.id).toBe('booking')
   })
 })
 
@@ -113,4 +124,3 @@ describe('legacy source roots — not deleted or moved', () => {
     expect(typeof mod.useServiceStore).toBe('function')
   })
 })
-

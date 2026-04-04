@@ -18,9 +18,10 @@ future steps can migrate logic one file at a time into a well-defined home.
 
 | Action  | Path                                                        | Purpose |
 |---------|-------------------------------------------------------------|---------|
-| Created | `app/features/booking/feature.manifest.ts`                  | Static metadata for the booking feature (id, name, version, status, legacyRoots) |
+| Created | `app/features/booking/manifest.ts`                          | Static metadata for the booking feature (id, name, version, status, legacyRoots) |
 | Created | `app/features/booking/index.ts`                             | Public API entry point — currently re-exports the manifest only |
-| Created | `app/features/index.ts`                                     | Feature registry — maps every feature ID to its manifest; re-exports all feature public APIs |
+| Created | `app/features/registry.ts`                                  | Scanner-readable feature registry in JSON-shaped export format |
+| Created | `app/features/index.ts`                                     | Runtime feature helpers and public re-exports for app code |
 | Created | `test/nuxt/features/booking.manifest.spec.ts`               | 13 structural verification tests (no network calls, no mocked fetch) |
 | Created | `docs/migration/step-03-feature-shell.md`                   | This file |
 
@@ -47,9 +48,10 @@ Files explicitly left untouched (guardrail compliance):
 
 ```
 app/features/
-├── index.ts                          ← feature registry + re-exports all public APIs
+├── registry.ts                       ← scanner-readable feature registry
+├── index.ts                          ← runtime helpers + re-exports all public APIs
 └── booking/
-    ├── feature.manifest.ts           ← feature metadata (static, side-effect-free)
+    ├── manifest.ts                   ← feature metadata (static, side-effect-free)
     └── index.ts                      ← public API entry point (thin during shell phase)
 ```
 
@@ -61,10 +63,15 @@ them, keeping the repository tidy.
 
 ## 4. Design Decisions
 
-### Why `feature.manifest.ts` is side-effect-free
+### Why `manifest.ts` is side-effect-free
 New Studio's scanner performs static analysis on the manifest.  Any runtime
 import (Pinia, Vue, `useFetch`, etc.) would break the scan.  The manifest
 file is therefore a plain TypeScript `const` with no imports.
+
+### Why `registry.ts` exists separately from `index.ts`
+New Studio reads `app/features/registry.ts` directly using a strict parser.
+That file must stay JSON-shaped and import-free.  Runtime helpers and
+re-exports therefore live in `app/features/index.ts` instead.
 
 ### Why `legacyRoots` is declared on the manifest
 It makes the migration contract explicit and machine-readable.  Tooling (and
@@ -111,9 +118,10 @@ Test Files  3 passed (3)
 
 ## 7. Verification Checklist
 
-- [x] `app/features/booking/feature.manifest.ts` created and exports `bookingFeatureManifest`
+- [x] `app/features/booking/manifest.ts` created and exports `bookingFeatureManifest`
 - [x] `app/features/booking/index.ts` created and re-exports from the manifest
-- [x] `app/features/index.ts` created with `featureRegistry`, `FeatureId`, `getFeatureManifest`
+- [x] `app/features/registry.ts` created in scanner-readable format
+- [x] `app/features/index.ts` created with runtime helpers and re-exports
 - [x] 13 new structural tests pass
 - [x] All 26 tests pass (`pnpm test`)
 - [x] No legacy source files modified
@@ -131,4 +139,3 @@ Begin moving the booking-feature business logic (composables, stores,
 component) from the legacy source roots into `app/features/booking/`,
 one file at a time.  Add re-export shims in the original locations so that
 nothing that imports from the legacy paths breaks.
-

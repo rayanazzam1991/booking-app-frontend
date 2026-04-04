@@ -6,11 +6,10 @@
  * access, no composables) so it can be statically analysed by New Studio's
  * protected-feature scanner.
  *
- * Migration status: "shell"
- *   The directory structure is in place but business logic has not been
- *   moved yet.  Legacy source roots listed in `legacyRoots` remain the
- *   authoritative implementations until a future migration step copies
- *   them here.
+ * Migration status: "migrating"
+ *   The booking feature owns the canonical implementation now. Legacy
+ *   source roots listed in `legacyRoots` remain in place as compatibility
+ *   shims until the cleanup step removes them.
  */
 
 export const bookingFeatureManifest = {
@@ -30,8 +29,8 @@ export const bookingFeatureManifest = {
   /**
    * Migration lifecycle status.
    *
-   * "shell"     — directory skeleton created; no logic moved yet  (current)
-   * "migrating" — logic is being progressively moved into this feature
+   * "shell"     — directory skeleton created; no logic moved yet
+   * "migrating" — logic has moved and legacy adapters still exist (current)
    * "complete"  — all legacy roots have been absorbed
    */
   status: 'migrating' as const,
@@ -51,4 +50,3 @@ export const bookingFeatureManifest = {
 } as const
 
 export type BookingFeatureManifest = typeof bookingFeatureManifest
-

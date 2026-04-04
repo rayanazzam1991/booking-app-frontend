@@ -11,8 +11,8 @@
  *   now re-export shims and will be removed in a future cleanup step.
  */
 
-export { bookingFeatureManifest } from './feature.manifest'
-export type { BookingFeatureManifest } from './feature.manifest'
+export { bookingFeatureManifest } from './manifest'
+export type { BookingFeatureManifest } from './manifest'
 
 // Stores
 export { useServiceStore } from './stores/serviceStore'
