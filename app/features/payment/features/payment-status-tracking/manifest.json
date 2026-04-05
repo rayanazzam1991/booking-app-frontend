@@ -1,0 +1,25 @@
+{
+  "id": "payment-status-tracking",
+  "name": "Payment Status Tracking",
+  "status": "scaffolding",
+  "type": "subfeature",
+  "description": "Expose payment state and review progress to users and admins.",
+  "acceptanceCriteria": [
+    "user can see status of payment in the dashboard."
+  ],
+  "requiresSupabase": false,
+  "paths": {
+    "entry": "index.ts",
+    "contract": "PaymentStatusTracking.contract.ts",
+    "readme": "README.md",
+    "acceptance_criteria": "acceptance.criteria.md",
+    "tests": "tests/",
+    "store": "stores/PaymentStatusTrackingStore.ts",
+    "ui_entry": "components/PaymentStatusTrackingWidget.vue"
+  },
+  "subfeatures": [],
+  "dependencies": {
+    "internal": [],
+    "external": []
+  }
+}

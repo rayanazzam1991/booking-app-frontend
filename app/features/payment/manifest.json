@@ -1,0 +1,28 @@
+{
+  "id": "payment",
+  "name": "Payment",
+  "status": "scaffolding",
+  "type": "feature",
+  "description": "Manage payment submission, verification, and payment state across the product.",
+  "acceptanceCriteria": [
+    "it should accept payment with bank deposit with image of the deposit",
+    "user can see status of payment in the dashboard.",
+    "appointment wont be approved until admin approve it manually."
+  ],
+  "requiresSupabase": false,
+  "paths": {
+    "entry": "index.ts",
+    "contract": "Payment.contract.ts",
+    "readme": "README.md",
+    "acceptance_criteria": "acceptance.criteria.md",
+    "tests": "tests/",
+    "store": "stores/PaymentStore.ts",
+    "service": "services/PaymentService.ts",
+    "ui_entry": "pages/PaymentPage.vue"
+  },
+  "subfeatures": [],
+  "dependencies": {
+    "internal": [],
+    "external": []
+  }
+}

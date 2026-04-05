@@ -1,0 +1,25 @@
+{
+  "id": "payment-approval-flow",
+  "name": "Payment Approval Flow",
+  "status": "scaffolding",
+  "type": "subfeature",
+  "description": "Gate approvals on manual review when payment confirmation is required.",
+  "acceptanceCriteria": [
+    "appointment wont be approved until admin approve it manually."
+  ],
+  "requiresSupabase": false,
+  "paths": {
+    "entry": "index.ts",
+    "contract": "PaymentApprovalFlow.contract.ts",
+    "readme": "README.md",
+    "acceptance_criteria": "acceptance.criteria.md",
+    "tests": "tests/",
+    "store": "stores/PaymentApprovalFlowStore.ts",
+    "ui_entry": "components/PaymentApprovalFlowWidget.vue"
+  },
+  "subfeatures": [],
+  "dependencies": {
+    "internal": [],
+    "external": []
+  }
+}
