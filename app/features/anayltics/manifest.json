@@ -1,0 +1,31 @@
+{
+  "id": "anayltics",
+  "name": "Anayltics",
+  "status": "scaffolding",
+  "type": "feature",
+  "description": "",
+  "acceptanceCriteria": [
+    "user should see all transactions.",
+    "user can see monthly/weekly report.",
+    "user can download reports"
+  ],
+  "requiresSupabase": false,
+  "paths": {
+    "entry": "index.ts",
+    "contract": "Anayltics.contract.ts",
+    "readme": "README.md",
+    "acceptance_criteria": "acceptance.criteria.md",
+    "tests": "tests/",
+    "store": "stores/AnaylticsStore.ts",
+    "service": "services/AnaylticsService.ts",
+    "ui_entry": "pages/AnaylticsPage.vue"
+  },
+  "subfeatures": [],
+  "dependencies": {
+    "internal": [
+      "payment",
+      "booking"
+    ],
+    "external": []
+  }
+}

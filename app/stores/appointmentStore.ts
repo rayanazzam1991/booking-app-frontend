@@ -1,19 +1,13 @@
-import {useApi} from "../composables/useApi";
-import {type ApiResponse} from "../../shared/types/api";
-
-export const useAppointmentStore = defineStore('appointment-store', ()=>{
-
-    const {directApi} = useApi()
-
-    const config =  useRuntimeConfig().public
-    async function bookAppointment(request : any) {
-        console.log(`${config.BASE_API_URL}/appointment`)
-        const response = await directApi.post<ApiResponse<any>>('/appointment',{
-            ...request
-        });
-    }
-
-    return {
-        bookAppointment,
-    }
-})
+/**
+ * Re-export shim — appointmentStore
+ *
+ * The canonical implementation now lives at:
+ *   app/features/booking/stores/appointmentStore.ts
+ *
+ * This shim keeps the legacy import path alive so that:
+ *  - @pinia/nuxt auto-imports still resolve `useAppointmentStore`
+ *  - Any direct import from '~/stores/appointmentStore' continues to work
+ *
+ * Remove this file only after all direct callers are updated.
+ */
+export { useAppointmentStore } from '../features/booking/stores/appointmentStore'

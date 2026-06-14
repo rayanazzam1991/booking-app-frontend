@@ -1,0 +1,26 @@
+{
+  "id": "payment-submission",
+  "name": "Payment Submission",
+  "status": "scaffolding",
+  "type": "subfeature",
+  "description": "Allow users to submit payment proof and attach it to the related booking or order.",
+  "acceptanceCriteria": [
+    "it should accept payment with bank deposit with image of the deposit",
+    "user can see status of payment in the dashboard."
+  ],
+  "requiresSupabase": false,
+  "paths": {
+    "entry": "index.ts",
+    "contract": "PaymentSubmission.contract.ts",
+    "readme": "README.md",
+    "acceptance_criteria": "acceptance.criteria.md",
+    "tests": "tests/",
+    "store": "stores/PaymentSubmissionStore.ts",
+    "ui_entry": "components/PaymentSubmissionWidget.vue"
+  },
+  "subfeatures": [],
+  "dependencies": {
+    "internal": [],
+    "external": []
+  }
+}

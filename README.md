@@ -85,3 +85,7 @@ pnpm preview # Serve the built app locally
 - **Empty dropdowns:** Confirm the services endpoint responds at `${VITE_BASE_URL}/api/services`.
 - **CORS issues:** Use the built-in server proxies under `server/api/*` instead of direct browser calls, or enable CORS on your backend.
 - **Env not applied:** Ensure you restart `pnpm dev` after editing `.env`.
+
+
+
+
