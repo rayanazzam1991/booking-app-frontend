@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import AnaylticsManager from '../components/AnaylticsManager.vue'
+import {usePayment} from "~/features/payment";
+const {init} = usePayment()
+
 </script>
 
 <template>
